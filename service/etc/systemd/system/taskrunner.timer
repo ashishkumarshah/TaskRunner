@@ -1,0 +1,10 @@
+[Unit]
+Description=Run TaskRunner every 5 minutes
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=5min
+Unit=taskrunner.service
+
+[Install]
+WantedBy=timers.target
