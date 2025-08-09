@@ -1,4 +1,4 @@
-from app.tasks.helloworldtask import HelloWorldTask
+from tasks.helloworldtask import HelloWorldTask
 
 
 class TaskRunner:
