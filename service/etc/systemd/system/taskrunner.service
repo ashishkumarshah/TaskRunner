@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/python3 /app/taskrunner.py
+ExecStart=/usr/bin/python3 /TaskRunner/app/taskrunner.py
 # Ensure logs go to journald
 StandardOutput=journal
 StandardError=journal
