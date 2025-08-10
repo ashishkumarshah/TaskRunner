@@ -2,7 +2,25 @@ SERVICE_NAME = taskrunner
 IMAGE_NAME = taskrunner:latest
 CONTAINER_NAME = taskrunner
 
-install:
+DB_FILE = db/itemstatus.db
+SQL_FILE = itemstatus.sql
+
+.DEFAULT_GOAL := install
+
+.PHONY: install uninstall clean status logs installdb
+
+installdb: $(DB_FILE)
+
+$(DB_FILE): $(SQL_FILE)
+	sqlite3 $(DB_FILE) < $(SQL_FILE)
+
+clean:
+	rm -f $(DB_FILE)
+
+install: installdb
+	pip3 install --no-cache-dir -r requirements.txt
+	mkdir -p /TaskRunner
+	cp -r . /TaskRunner/
 	sudo cp service/etc/systemd/system/$(SERVICE_NAME).service /etc/systemd/system/
 	sudo cp service/etc/systemd/system/$(SERVICE_NAME).timer /etc/systemd/system/
 	sudo systemctl daemon-reload
@@ -20,4 +38,3 @@ status:
 
 logs:
 	journalctl -u $(SERVICE_NAME).service -f
-

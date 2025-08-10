@@ -1,4 +1,5 @@
 from tasks.helloworldtask import HelloWorldTask
+from tasks.stockchecker import StockCheckTask
 
 
 class TaskRunner:
@@ -24,6 +25,8 @@ if __name__ == "__main__":
     runner = TaskRunner()
 
     runner.add_task(HelloWorldTask("Hello from a task!"))
+    runner.add_task(StockCheckTask("500048", "G1666"))
+    runner.add_task(StockCheckTask("500048", "DB38"))
 
     runner.run_all()
 

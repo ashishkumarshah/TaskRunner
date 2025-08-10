@@ -1,1 +1,3 @@
 .idea/
+db/itemstatus.db
+config/telegram.ini
